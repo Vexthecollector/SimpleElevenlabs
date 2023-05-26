@@ -34,6 +34,7 @@
             HiddenHistoryItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Play = new System.Windows.Forms.DataGridViewButtonColumn();
             Download = new System.Windows.Forms.DataGridViewButtonColumn();
+            filterTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -41,10 +42,10 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { Voice, Text, HiddenHistoryItem, Play, Download });
-            dataGridView1.Location = new System.Drawing.Point(12, 12);
+            dataGridView1.Location = new System.Drawing.Point(12, 42);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new System.Drawing.Size(708, 337);
+            dataGridView1.Size = new System.Drawing.Size(708, 307);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -85,17 +86,27 @@
             Download.Text = "Download";
             Download.UseColumnTextForButtonValue = true;
             // 
+            // filterTextBox
+            // 
+            filterTextBox.Location = new System.Drawing.Point(12, 13);
+            filterTextBox.Name = "filterTextBox";
+            filterTextBox.Size = new System.Drawing.Size(708, 23);
+            filterTextBox.TabIndex = 1;
+            filterTextBox.TextChanged += filterTextBox_TextChanged;
+            // 
             // History
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(46, 51, 73);
             ClientSize = new System.Drawing.Size(732, 361);
+            Controls.Add(filterTextBox);
             Controls.Add(dataGridView1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Name = "History";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -106,5 +117,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HiddenHistoryItem;
         private System.Windows.Forms.DataGridViewButtonColumn Play;
         private System.Windows.Forms.DataGridViewButtonColumn Download;
+        private System.Windows.Forms.TextBox filterTextBox;
     }
 }

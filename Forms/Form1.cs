@@ -44,7 +44,7 @@ namespace SimpleElevenlabs
                 MessageBox.Show("No Api Key set yet, please set one in the settings");
                 LoadSettings();
             }
-           
+
         }
 
         public void Set_Login()
@@ -136,9 +136,27 @@ namespace SimpleElevenlabs
             history.Show();
         }
 
+        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+            {
 
+            }
+            else
+            {
 
+                comboBox2.DroppedDown = true;
+                comboBox2.Items.Clear();
+                foreach (ElevenLabs.Voices.Voice voice in Manager.Configs.AllVoices)
+                {
+                    if (voice.Name.ToLower().Contains(comboBox2.Text.ToLower()) || String.IsNullOrEmpty(comboBox2.Text))
+                    {
 
+                        comboBox2.Items.Add(new selectedVoice(voice.Id, voice.Name));
+                    }
+                }
+            }
+        }
     }
     public class selectedVoice
     {

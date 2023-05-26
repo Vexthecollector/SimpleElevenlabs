@@ -16,31 +16,64 @@ namespace SimpleElevenlabs
 {
     public partial class History : Form
     {
+        IReadOnlyList<HistoryItem> items;
         public History()
         {
             InitializeComponent();
-            Get_History_Items();
+            Initial_History();
         }
+
+
 
         public async void Get_History_Items()
         {
-            var historyItems = await Manager.Configs.Api.HistoryEndpoint.GetHistoryAsync();
-            foreach (var historyItem in historyItems.OrderBy(historyItem => historyItem.Date))
+            items = await Manager.Configs.Api.HistoryEndpoint.GetHistoryAsync();
+
+        }
+
+        public async void Initial_History()
+        {
+            items = await Manager.Configs.Api.HistoryEndpoint.GetHistoryAsync();
+            foreach (var historyItem in items.OrderBy(historyItem => historyItem.Date))
             {
+
+
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 row.Cells[0].Value = historyItem.VoiceName;
                 row.Cells[1].Value = historyItem.Text;
                 row.Cells[2].Value = historyItem;
-
-                /*Button play = new Button();
-                //play.Text = "play";
-                //play.Name = "play";
-                row.Cells[3].Value = play;
-                Button download = new Button();
-                download.Text = "download";
-                download.Name = "download";
-                row.Cells[4].Value = download;*/
                 dataGridView1.Rows.Add(row);
+            }
+        }
+
+        public async void Populate_List(string filter=null)
+        {
+            dataGridView1.Rows.Clear();
+            if (String.IsNullOrEmpty(filter))
+            {
+                foreach (var historyItem in items.OrderBy(historyItem => historyItem.Date))
+                {
+
+
+                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                    row.Cells[0].Value = historyItem.VoiceName;
+                    row.Cells[1].Value = historyItem.Text;
+                    row.Cells[2].Value = historyItem;
+                    dataGridView1.Rows.Add(row);
+                }
+            }
+            else
+            {
+                foreach (var historyItem in items.OrderBy(historyItem => historyItem.Date).Where(item=>item.Text.ToLower().Contains(filter.ToLower())))
+                {
+
+
+                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                    row.Cells[0].Value = historyItem.VoiceName;
+                    row.Cells[1].Value = historyItem.Text;
+                    row.Cells[2].Value = historyItem;
+                    dataGridView1.Rows.Add(row);
+                }
             }
         }
 
@@ -75,5 +108,9 @@ namespace SimpleElevenlabs
             catch { }
         }
 
+        private void filterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Populate_List(filterTextBox.Text);
+        }
     }
 }

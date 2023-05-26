@@ -136,6 +136,8 @@
             // 
             // comboBox2
             // 
+            comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            comboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             comboBox2.BackColor = System.Drawing.Color.White;
             comboBox2.ForeColor = System.Drawing.Color.FromArgb(0, 156, 149);
             comboBox2.FormattingEnabled = true;
