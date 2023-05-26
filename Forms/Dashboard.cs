@@ -17,10 +17,11 @@ namespace SimpleElevenlabs
     {
         List<String> oldMessages = new List<string>();
         int currentMessage = 0;
+        int boxHeight = 20;
         public Dashboard()
         {
             InitializeComponent();
-
+            boxHeight = messageBox.Height;
         }
 
         public string Get_Older_Message()
@@ -113,11 +114,11 @@ namespace SimpleElevenlabs
             if (TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width > messageBox.Width - 30)
             {
                 //MessageBox.Show(TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width.ToString());
-                messageBox.Height = Math.Max((((TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width / (messageBox.Width-30))+1) * 20),20);
+                messageBox.Height = Math.Max((((TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width / (messageBox.Width-30))+1) * boxHeight), boxHeight);
             }
             else
             {
-                messageBox.Height = 20;
+                messageBox.Height = boxHeight;
             }
         }
     }
