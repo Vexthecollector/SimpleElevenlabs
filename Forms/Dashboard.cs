@@ -20,6 +20,7 @@ namespace SimpleElevenlabs
         public Dashboard()
         {
             InitializeComponent();
+
         }
 
         public string Get_Older_Message()
@@ -27,20 +28,22 @@ namespace SimpleElevenlabs
             try
             {
 
-            int number=oldMessages.Count();
-            if(currentMessage>0&&currentMessage<=number)
-            {
-                currentMessage--;
-                string text = oldMessages[currentMessage];
-                return text;
+                int number = oldMessages.Count();
+                if (currentMessage > 0 && currentMessage <= number)
+                {
+                    currentMessage--;
+                    string text = oldMessages[currentMessage];
+                    return text;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
             }
-            }
-            catch {
-                return null; }
         }
 
         public string Get_Newer_Message()
@@ -48,26 +51,28 @@ namespace SimpleElevenlabs
             try
             {
 
-            int number = oldMessages.Count();
-            if (currentMessage >= 0 && currentMessage <number)
-            {
-                string text = oldMessages[currentMessage];
-                currentMessage++;
-                return text;
+                int number = oldMessages.Count();
+                if (currentMessage >= 0 && currentMessage < number)
+                {
+                    string text = oldMessages[currentMessage];
+                    currentMessage++;
+                    return text;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
             }
-            }
-            catch {
-                return null; }
         }
 
         public async void Send_Message()
         {
             String text = messageBox.Text;
-            if(!String.IsNullOrEmpty(text)) oldMessages.Add(text);
+            if (!String.IsNullOrEmpty(text)) oldMessages.Add(text);
             var defaultVoiceSettings = await Manager.Configs.Api.VoicesEndpoint.GetDefaultVoiceSettingsAsync();
             string clippath = await Manager.Configs.Api.TextToSpeechEndpoint.TextToSpeechAsync(text, Manager.Configs.Voice, defaultVoiceSettings);
             var reader = new Mp3FileReader(clippath);
@@ -82,19 +87,20 @@ namespace SimpleElevenlabs
         private void sendMessage_Click_1(object sender, EventArgs e)
         {
             Send_Message();
-           
+
         }
 
         private void messageBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 Send_Message();
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
-            if(e.KeyCode == Keys.Up) {
-                messageBox.Text=Get_Older_Message();
+            if (e.KeyCode == Keys.Up)
+            {
+                messageBox.Text = Get_Older_Message();
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
@@ -103,6 +109,9 @@ namespace SimpleElevenlabs
                 messageBox.Text = Get_Newer_Message();
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+            }
+            if (TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width > messageBox.Width){
+                messageBox.Height = Math.Max(((TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width / messageBox.Width) * 20),20);
             }
         }
     }

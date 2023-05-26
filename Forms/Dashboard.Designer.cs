@@ -35,7 +35,7 @@
             // 
             // sendMessage
             // 
-            sendMessage.Location = new System.Drawing.Point(13, 79);
+            sendMessage.Location = new System.Drawing.Point(13, 12);
             sendMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             sendMessage.Name = "sendMessage";
             sendMessage.Size = new System.Drawing.Size(103, 27);
@@ -46,18 +46,20 @@
             // 
             // volumeSlider1
             // 
-            volumeSlider1.Location = new System.Drawing.Point(123, 79);
+            volumeSlider1.Location = new System.Drawing.Point(123, 23);
             volumeSlider1.Name = "volumeSlider1";
             volumeSlider1.Size = new System.Drawing.Size(96, 16);
             volumeSlider1.TabIndex = 13;
             // 
             // messageBox
             // 
-            messageBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            messageBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             messageBox.Location = new System.Drawing.Point(13, 50);
             messageBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            messageBox.Multiline = true;
             messageBox.Name = "messageBox";
-            messageBox.Size = new System.Drawing.Size(706, 23);
+            messageBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            messageBox.Size = new System.Drawing.Size(706, 20);
             messageBox.TabIndex = 11;
             messageBox.KeyDown += messageBox_KeyDown;
             // 
