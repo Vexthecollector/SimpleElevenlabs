@@ -32,10 +32,9 @@ namespace SimpleElevenlabs
         {
             try
             {
-
-            apiKeyBox.Text = Manager.Configs.Api.ElevenLabsAuthentication.ApiKey;
+                apiKeyBox.Text = Manager.Configs.Api.ElevenLabsAuthentication.ApiKey;
             }
-            catch { }
+            catch (Exception ex){ }
         }
 
         private void setApiKey_Click(object sender, EventArgs e)

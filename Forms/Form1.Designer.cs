@@ -29,63 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            comboBox1 = new System.Windows.Forms.ComboBox();
-            messageBox = new System.Windows.Forms.TextBox();
-            SendMessage = new System.Windows.Forms.Button();
-            label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
-            volumeSlider1 = new NAudio.Gui.VolumeSlider();
             panel1 = new System.Windows.Forms.Panel();
+            btnHistory = new System.Windows.Forms.Button();
+            btnDashboard = new System.Windows.Forms.Button();
             btnSettings = new System.Windows.Forms.Button();
             userLogin = new System.Windows.Forms.Label();
             comboBox2 = new System.Windows.Forms.ComboBox();
             labelTitle = new System.Windows.Forms.Label();
             formLoader = new System.Windows.Forms.Panel();
-            btnDashboard = new System.Windows.Forms.Button();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new System.Drawing.Point(180, 173);
-            comboBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new System.Drawing.Size(292, 23);
-            comboBox1.TabIndex = 2;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // messageBox
-            // 
-            messageBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            messageBox.Location = new System.Drawing.Point(180, 245);
-            messageBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            messageBox.Name = "messageBox";
-            messageBox.Size = new System.Drawing.Size(740, 23);
-            messageBox.TabIndex = 3;
-            // 
-            // SendMessage
-            // 
-            SendMessage.Location = new System.Drawing.Point(180, 274);
-            SendMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            SendMessage.Name = "SendMessage";
-            SendMessage.Size = new System.Drawing.Size(103, 27);
-            SendMessage.TabIndex = 4;
-            SendMessage.Text = "Send Message";
-            SendMessage.UseVisualStyleBackColor = true;
-            SendMessage.Click += SendMessage_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
-            label2.Location = new System.Drawing.Point(180, 155);
-            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(83, 15);
-            label2.TabIndex = 6;
-            label2.Text = "Output Device";
             // 
             // label3
             // 
@@ -108,16 +63,10 @@
             label4.TabIndex = 9;
             label4.Text = "Text";
             // 
-            // volumeSlider1
-            // 
-            volumeSlider1.Location = new System.Drawing.Point(290, 274);
-            volumeSlider1.Name = "volumeSlider1";
-            volumeSlider1.Size = new System.Drawing.Size(96, 16);
-            volumeSlider1.TabIndex = 10;
-            // 
             // panel1
             // 
             panel1.BackColor = System.Drawing.Color.FromArgb(24, 30, 54);
+            panel1.Controls.Add(btnHistory);
             panel1.Controls.Add(btnDashboard);
             panel1.Controls.Add(btnSettings);
             panel1.Controls.Add(userLogin);
@@ -128,6 +77,34 @@
             panel1.Name = "panel1";
             panel1.Size = new System.Drawing.Size(173, 519);
             panel1.TabIndex = 11;
+            // 
+            // btnHistory
+            // 
+            btnHistory.FlatAppearance.BorderSize = 0;
+            btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnHistory.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
+            btnHistory.Location = new System.Drawing.Point(8, 222);
+            btnHistory.Name = "btnHistory";
+            btnHistory.Size = new System.Drawing.Size(152, 23);
+            btnHistory.TabIndex = 12;
+            btnHistory.Text = "History";
+            btnHistory.UseVisualStyleBackColor = true;
+            btnHistory.Click += btnHistory_Click;
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnDashboard.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
+            btnDashboard.Image = (System.Drawing.Image)resources.GetObject("btnDashboard.Image");
+            btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnDashboard.Location = new System.Drawing.Point(8, 173);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new System.Drawing.Size(152, 23);
+            btnDashboard.TabIndex = 11;
+            btnDashboard.Text = "Dashboard";
+            btnDashboard.UseVisualStyleBackColor = true;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnSettings
             // 
@@ -188,21 +165,6 @@
             formLoader.Size = new System.Drawing.Size(748, 400);
             formLoader.TabIndex = 13;
             // 
-            // btnDashboard
-            // 
-            btnDashboard.FlatAppearance.BorderSize = 0;
-            btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnDashboard.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
-            btnDashboard.Image = (System.Drawing.Image)resources.GetObject("btnDashboard.Image");
-            btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnDashboard.Location = new System.Drawing.Point(8, 173);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new System.Drawing.Size(152, 23);
-            btnDashboard.TabIndex = 11;
-            btnDashboard.Text = "Dashboard";
-            btnDashboard.UseVisualStyleBackColor = true;
-            btnDashboard.Click += btnDashboard_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -211,13 +173,8 @@
             ClientSize = new System.Drawing.Size(933, 519);
             Controls.Add(formLoader);
             Controls.Add(labelTitle);
-            Controls.Add(SendMessage);
             Controls.Add(panel1);
-            Controls.Add(volumeSlider1);
             Controls.Add(label4);
-            Controls.Add(label2);
-            Controls.Add(messageBox);
-            Controls.Add(comboBox1);
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Name = "Form1";
             Text = "Form1";
@@ -229,13 +186,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox messageBox;
-        private System.Windows.Forms.Button SendMessage;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private NAudio.Gui.VolumeSlider volumeSlider1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label userLogin;
@@ -243,6 +195,7 @@
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Panel formLoader;
         private System.Windows.Forms.Button btnDashboard;
+        private System.Windows.Forms.Button btnHistory;
     }
 }
 

@@ -37,9 +37,14 @@ namespace SimpleElevenlabs
                     MessageBox.Show("The API Key wasn't properly stored. You will have to set it again.");
                 }
                 //textBox1.Text = api.ElevenLabsAuthentication.ApiKey;
-
+                LoadDashBoard();
             }
-            LoadDashBoard();
+            else
+            {
+                MessageBox.Show("No Api Key set yet, please set one in the settings");
+                LoadSettings();
+            }
+           
         }
 
         public void Set_Login()
@@ -59,43 +64,13 @@ namespace SimpleElevenlabs
 
 
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string apikey = "";
-            Show_Input_Dialog(ref apikey, "Set API Key");
-            utils.Initialize(apikey);
-            if (MessageBox.Show("Would you like to save the key for future use?", "Save Key?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                utils.Store_API_Key(apikey);
-            }
 
-        }
-
-
-
-        
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            utils.set_Audio_Device(comboBox1.SelectedIndex);
         }
 
-        private void SendMessage_Click(object sender, EventArgs e)
-        {
-            sendMessage();
-        }
 
-        public async void sendMessage()
-        {
-            String text = messageBox.Text;
-            var defaultVoiceSettings = await Manager.Configs.Api.VoicesEndpoint.GetDefaultVoiceSettingsAsync();
-            string clippath = await Manager.Configs.Api.TextToSpeechEndpoint.TextToSpeechAsync(text, Manager.Configs.Voice, defaultVoiceSettings);
-            var reader = new Mp3FileReader(clippath);
-            //WaveFileReader waveReader = new NAudio.Wave.WaveFileReader(clippath);
-            waveOut.Volume = volumeSlider1.Volume;
-            waveOut.Init(reader);
-            waveOut.Play();
-        }
 
         public async void get_Voices()
         {
@@ -119,14 +94,18 @@ namespace SimpleElevenlabs
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            labelTitle.Text = "Settings";
-            this.formLoader.Controls.Clear();
-            Settings settings = new Settings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            settings.FormBorderStyle = FormBorderStyle.None;
-            this.formLoader.Controls.Add(settings);
-            settings.Show();
+            LoadSettings();
         }
 
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            LoadDashBoard();
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            LoadHistory();
+        }
         private void LoadDashBoard()
         {
             labelTitle.Text = "Dashboard";
@@ -137,51 +116,29 @@ namespace SimpleElevenlabs
             dashboard.Show();
         }
 
-
-
-        private static DialogResult Show_Input_Dialog(ref string input, string dialogName = "Name")
+        private void LoadSettings()
         {
-            System.Drawing.Size size = new System.Drawing.Size(200, 70);
-            Form inputBox = new Form();
-
-            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            inputBox.ClientSize = size;
-            inputBox.Text = dialogName;
-
-            System.Windows.Forms.TextBox textBox = new TextBox();
-            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
-            textBox.Location = new System.Drawing.Point(5, 5);
-            textBox.Text = input;
-            inputBox.Controls.Add(textBox);
-
-            Button okButton = new Button();
-            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(75, 23);
-            okButton.Text = "&OK";
-            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
-            inputBox.Controls.Add(okButton);
-
-            Button cancelButton = new Button();
-            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(75, 23);
-            cancelButton.Text = "&Cancel";
-            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
-            inputBox.Controls.Add(cancelButton);
-
-            inputBox.AcceptButton = okButton;
-            inputBox.CancelButton = cancelButton;
-
-            DialogResult result = inputBox.ShowDialog();
-            input = textBox.Text;
-            return result;
+            labelTitle.Text = "Settings";
+            this.formLoader.Controls.Clear();
+            Settings settings = new Settings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            settings.FormBorderStyle = FormBorderStyle.None;
+            this.formLoader.Controls.Add(settings);
+            settings.Show();
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
+        private void LoadHistory()
         {
-            LoadDashBoard();
+            labelTitle.Text = "History";
+            this.formLoader.Controls.Clear();
+            History history = new History() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            history.FormBorderStyle = FormBorderStyle.None;
+            this.formLoader.Controls.Add(history);
+            history.Show();
         }
+
+
+
+
     }
     public class selectedVoice
     {
