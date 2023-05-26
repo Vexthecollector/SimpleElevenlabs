@@ -110,8 +110,14 @@ namespace SimpleElevenlabs
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
-            if (TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width > messageBox.Width){
-                messageBox.Height = Math.Max(((TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width / messageBox.Width) * 20),20);
+            if (TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width > messageBox.Width - 30)
+            {
+                //MessageBox.Show(TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width.ToString());
+                messageBox.Height = Math.Max((((TextRenderer.MeasureText(messageBox.Text, messageBox.Font).Width / (messageBox.Width-30))+1) * 20),20);
+            }
+            else
+            {
+                messageBox.Height = 20;
             }
         }
     }
