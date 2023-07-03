@@ -91,6 +91,7 @@ namespace SimpleElevenlabs
             String text = messageBox.Text;
             if (!String.IsNullOrEmpty(text)) oldMessages.Add(text);
             ElevenLabs.Voices.VoiceSettings defaultVoiceSettings = await Manager.Configs.Api.VoicesEndpoint.GetDefaultVoiceSettingsAsync();
+            Get_Voice_Settings(ref defaultVoiceSettings);
             string clippath = await Manager.Configs.Api.TextToSpeechEndpoint.TextToSpeechAsync(text, Manager.Configs.Voice, defaultVoiceSettings, model: Manager.Configs.Model, deleteCachedFile: true);
             Play_Message(clippath);
         }
@@ -179,6 +180,14 @@ namespace SimpleElevenlabs
             {
 
             }
+        }
+
+        public void Get_Voice_Settings(ref ElevenLabs.Voices.VoiceSettings voiceSettings)
+        {
+            voiceSettings.Stability =trackBarStability.Value/100f;
+            voiceSettings.SimilarityBoost = trackBarClarity.Value / 100f;
+            voiceSettings.Style = trackBarStyle.Value / 100f;
+            voiceSettings.SpeakerBoost = checkBoxBoost.Checked;
         }
 
     }

@@ -114,7 +114,7 @@ namespace SimpleElevenlabs
             Manager.Configs.Voice = await Manager.Configs.Api.VoicesEndpoint.GetVoiceAsync(id);
             try
             {
-                if(Manager.Configs.Dashboard.Enabled)
+                if(Manager.Configs.Dashboard!=null)
                 {
                     Manager.Configs.Dashboard.Set_Voice_Settings();
                 }

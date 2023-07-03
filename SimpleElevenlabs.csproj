@@ -5,6 +5,10 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	<Authors>Vexthecollector</Authors>
+	<Title>SimpleElevenlabs</Title>
+	<Copyright>2023</Copyright>
+	<Version>1.2.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ElevenLabs-DotNet">
