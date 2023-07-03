@@ -24,12 +24,18 @@ namespace SimpleElevenlabs
         {
             InitializeComponent();
             Manager.Configs.Form1 = this;
+            Init();
+
+        }
+
+        public async void Init()
+        {
             if (File.Exists(".apikey"))
             {
                 try
                 {
 
-                    utils.Initialize(File.ReadAllText(".apikey"));
+                    await utils.Initialize(File.ReadAllText(".apikey"));
 
                 }
                 catch
@@ -44,7 +50,6 @@ namespace SimpleElevenlabs
                 MessageBox.Show("No Api Key set yet, please set one in the settings");
                 LoadSettings();
             }
-
         }
 
         public void Set_Login()
@@ -85,12 +90,16 @@ namespace SimpleElevenlabs
         public async void set_Voice(string id)
         {
             Manager.Configs.Voice = await Manager.Configs.Api.VoicesEndpoint.GetVoiceAsync(id);
+            Manager.Configs.Dashboard.Set_Voice_Settings();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             set_Voice(((selectedVoice)comboBox2.SelectedItem).Id);
         }
+
+
+
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
@@ -156,6 +165,21 @@ namespace SimpleElevenlabs
                     }
                 }
             }
+        }
+
+        private void openVoicesForm_Click(object sender, EventArgs e)
+        {
+            LoadVoices();
+        }
+
+        private void LoadVoices()
+        {
+            labelTitle.Text = "Voice Manager";
+            this.formLoader.Controls.Clear();
+            VoiceForm voiceForm = new VoiceForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            voiceForm.FormBorderStyle = FormBorderStyle.None;
+            this.formLoader.Controls.Add(voiceForm);
+            voiceForm.Show();
         }
     }
     public class selectedVoice

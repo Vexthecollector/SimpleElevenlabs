@@ -11,12 +11,14 @@ namespace SimpleElevenlabs
 {
     public class Utils
     {
-        public void Initialize(string apikey)
+        public async Task Initialize(string apikey)
         {
             Manager.Configs.Api = new ElevenLabsClient(apikey);
             Manager.Configs.Form1.get_Voices();
             Manager.Configs.Form1.Set_Login();
-            get_Current_User();
+            await get_Current_User();
+            await get_Current_Models();
+            return;
         }
         public void Store_API_Key(string apikey)
         {
@@ -51,15 +53,23 @@ namespace SimpleElevenlabs
             return false;
         }
 
+
         public void set_Audio_Device(int deviceNumber)
         {
             Manager.Configs.WaveOut.DeviceNumber = deviceNumber;
             Store_Settings();
         }
-        public async void get_Current_User()
+
+        public async Task get_Current_User()
         {
             Manager.Configs.UserInfo = await Manager.Configs.Api.UserEndpoint.GetUserInfoAsync();
+            return;
         }
         
+        public async Task get_Current_Models()
+        {
+            Manager.Configs.Models = await Manager.Configs.Api.ModelsEndpoint.GetModelsAsync();
+            return;
+        }
     }
 }
