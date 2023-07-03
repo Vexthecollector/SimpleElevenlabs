@@ -11,14 +11,22 @@ namespace SimpleElevenlabs
 {
     public class Utils
     {
-        public async Task Initialize(string apikey)
+        public async Task<Boolean> Initialize(string apikey)
         {
-            Manager.Configs.Api = new ElevenLabsClient(apikey);
-            Manager.Configs.Form1.get_Voices();
-            Manager.Configs.Form1.Set_Login();
-            await get_Current_User();
-            await get_Current_Models();
-            return;
+            try
+            {
+
+                Manager.Configs.Api = new ElevenLabsClient(apikey);
+                Manager.Configs.Form1.get_Voices();
+                Manager.Configs.Form1.Set_Login();
+                await get_Current_User();
+                await get_Current_Models();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         public void Store_API_Key(string apikey)
         {

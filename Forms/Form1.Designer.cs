@@ -32,7 +32,6 @@
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             panel1 = new System.Windows.Forms.Panel();
-            openVoicesForm = new System.Windows.Forms.Button();
             btnHistory = new System.Windows.Forms.Button();
             btnDashboard = new System.Windows.Forms.Button();
             btnSettings = new System.Windows.Forms.Button();
@@ -67,7 +66,6 @@
             // panel1
             // 
             panel1.BackColor = System.Drawing.Color.FromArgb(24, 30, 54);
-            panel1.Controls.Add(openVoicesForm);
             panel1.Controls.Add(btnHistory);
             panel1.Controls.Add(btnDashboard);
             panel1.Controls.Add(btnSettings);
@@ -79,19 +77,6 @@
             panel1.Name = "panel1";
             panel1.Size = new System.Drawing.Size(173, 519);
             panel1.TabIndex = 11;
-            // 
-            // openVoicesForm
-            // 
-            openVoicesForm.FlatAppearance.BorderSize = 0;
-            openVoicesForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            openVoicesForm.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
-            openVoicesForm.Location = new System.Drawing.Point(9, 270);
-            openVoicesForm.Name = "openVoicesForm";
-            openVoicesForm.Size = new System.Drawing.Size(152, 23);
-            openVoicesForm.TabIndex = 13;
-            openVoicesForm.Text = "Manage Voices";
-            openVoicesForm.UseVisualStyleBackColor = true;
-            openVoicesForm.Click += openVoicesForm_Click;
             // 
             // btnHistory
             // 
@@ -214,7 +199,6 @@
         private System.Windows.Forms.Panel formLoader;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnHistory;
-        private System.Windows.Forms.Button openVoicesForm;
     }
 }
 

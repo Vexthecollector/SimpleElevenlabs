@@ -28,6 +28,7 @@ namespace SimpleElevenlabs
             Manager.Configs.Dashboard = this;
             boxHeight = messageBox.Height;
             Set_Models_List();
+            Set_Voice_Settings();
         }
 
         public string Get_Older_Message()
@@ -166,11 +167,18 @@ namespace SimpleElevenlabs
 
         public void Set_Voice_Settings()
         {
+            try
+            {
+
             ElevenLabs.Voices.VoiceSettings voiceSettings = Manager.Configs.Voice.Settings;
             trackBarClarity.Value = Convert.ToInt32(voiceSettings.SimilarityBoost * 100);
             trackBarStability.Value = Convert.ToInt32(voiceSettings.Stability * 100);
             trackBarStyle.Value = Convert.ToInt32(voiceSettings.Style * 100);
             checkBoxBoost.Checked = voiceSettings.SpeakerBoost;
+            } catch (Exception ex)
+            {
+
+            }
         }
 
     }

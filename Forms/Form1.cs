@@ -48,8 +48,22 @@ namespace SimpleElevenlabs
             else
             {
                 MessageBox.Show("No Api Key set yet, please set one in the settings");
+                Disable_Buttons();
+
                 LoadSettings();
             }
+        }
+
+        public void Enable_Buttons()
+        {
+            btnDashboard.Enabled = true;
+            btnHistory.Enabled = true;
+        }
+
+        public void Disable_Buttons()
+        {
+            btnDashboard.Enabled = false;
+            btnHistory.Enabled = false;       
         }
 
         public void Set_Login()
@@ -77,20 +91,38 @@ namespace SimpleElevenlabs
 
 
 
-        public async void get_Voices()
+        public async Task<Boolean> get_Voices()
         {
+            try
+            {
+
             Manager.Configs.AllVoices = (List<ElevenLabs.Voices.Voice>)await Manager.Configs.Api.VoicesEndpoint.GetAllVoicesAsync();
             foreach (ElevenLabs.Voices.Voice voice in Manager.Configs.AllVoices)
             {
                 comboBox2.Items.Add(new selectedVoice(voice.Id, voice.Name));
             }
             comboBox2.SelectedIndex = 0;
+                return true;
+            } catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public async void set_Voice(string id)
         {
             Manager.Configs.Voice = await Manager.Configs.Api.VoicesEndpoint.GetVoiceAsync(id);
-            Manager.Configs.Dashboard.Set_Voice_Settings();
+            try
+            {
+                if(Manager.Configs.Dashboard.Enabled)
+                {
+                    Manager.Configs.Dashboard.Set_Voice_Settings();
+                }
+                
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)

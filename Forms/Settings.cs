@@ -39,10 +39,23 @@ namespace SimpleElevenlabs
 
         private void setApiKey_Click(object sender, EventArgs e)
         {
-            utils.Initialize(apiKeyBox.Text);
-            if (MessageBox.Show("Would you like to save the key for future use?", "Save Key?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            Set_Apikey();
+        }
+
+        private async void Set_Apikey()
+        {
+            if (await utils.Initialize(apiKeyBox.Text))
             {
-                utils.Store_API_Key(apiKeyBox.Text);
+
+                if (MessageBox.Show("Would you like to save the key for future use?", "Save Key?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    utils.Store_API_Key(apiKeyBox.Text);
+                }
+                Manager.Configs.Form1.Enable_Buttons();
+            }
+            else
+            {
+                MessageBox.Show("The given API Key was invalid. Please make sure you are properly copying the key.");
             }
         }
 
