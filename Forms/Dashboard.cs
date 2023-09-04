@@ -171,12 +171,13 @@ namespace SimpleElevenlabs
             try
             {
 
-            ElevenLabs.Voices.VoiceSettings voiceSettings = Manager.Configs.Voice.Settings;
-            trackBarClarity.Value = Convert.ToInt32(voiceSettings.SimilarityBoost * 100);
-            trackBarStability.Value = Convert.ToInt32(voiceSettings.Stability * 100);
-            trackBarStyle.Value = Convert.ToInt32(voiceSettings.Style * 100);
-            checkBoxBoost.Checked = voiceSettings.SpeakerBoost;
-            } catch (Exception ex)
+                ElevenLabs.Voices.VoiceSettings voiceSettings = Manager.Configs.Voice.Settings;
+                trackBarClarity.Value = Convert.ToInt32(voiceSettings.SimilarityBoost * 100);
+                trackBarStability.Value = Convert.ToInt32(voiceSettings.Stability * 100);
+                trackBarStyle.Value = Convert.ToInt32(voiceSettings.Style * 100);
+                checkBoxBoost.Checked = voiceSettings.SpeakerBoost;
+            }
+            catch (Exception ex)
             {
 
             }
@@ -184,7 +185,7 @@ namespace SimpleElevenlabs
 
         public void Get_Voice_Settings(ref ElevenLabs.Voices.VoiceSettings voiceSettings)
         {
-            voiceSettings.Stability =trackBarStability.Value/100f;
+            voiceSettings.Stability = trackBarStability.Value / 100f;
             voiceSettings.SimilarityBoost = trackBarClarity.Value / 100f;
             voiceSettings.Style = trackBarStyle.Value / 100f;
             voiceSettings.SpeakerBoost = checkBoxBoost.Checked;

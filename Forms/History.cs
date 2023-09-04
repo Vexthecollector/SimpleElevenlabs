@@ -88,7 +88,15 @@ namespace SimpleElevenlabs
 
         public async void Download_Message(HistoryItem historyItem)
         {
+            try
+            {
+
             await Manager.Configs.Api.HistoryEndpoint.GetHistoryAudioAsync(historyItem);
+            }
+            catch (System.IO.IOException ex) {
+                MessageBox.Show("Audio is already downloaded");
+
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
